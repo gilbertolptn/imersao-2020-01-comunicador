@@ -1,9 +1,11 @@
 package br.com.tt.comunicador.tela;
 
 import br.com.tt.comunicador.common.Util;
+import br.com.tt.comunicador.exceptions.TamanhoMensagemInvalidoException;
 import br.com.tt.comunicador.model.Mensagem;
 import br.com.tt.comunicador.model.Usuario;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class Main {
                 break;
             }
         }while (true);
+        listarMensagens();
     }
 
     private static void entrar(){
@@ -50,12 +53,29 @@ public class Main {
     private static void novaMensagem(){
         Util.print("Mensagem: ");
         String texto = Util.read();
-        Mensagem mensagem = new Mensagem(texto);
-        mensagens.add(mensagem);
+        try {
+            Mensagem mensagem = new Mensagem(texto);
+            mensagens.add(mensagem);
+
+        }catch (TamanhoMensagemInvalidoException e){
+            System.err.println(e);
+            Util.print(e.getMessage());
+        } finally {
+            //algo que sempre deve executar...
+        }
         //dataHora.format(
         // DateTimeFormatter.ofPattern("dd/MM/yyy"));
     }
 
     private static void listarMensagens(){
+
+        String descricoes = new String();
+        for(int c=0; c < mensagens.size() ;c++){
+            Mensagem msg = mensagens.get(c);
+            descricoes += msg.getDescricao() + "\n";
+            // outro exemplo: descricoes = descricoes.concat(msg + "\n");
+        }
+        Util.print(descricoes);
+
     }
 }

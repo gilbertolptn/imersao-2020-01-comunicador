@@ -1,7 +1,6 @@
 package br.com.tt.comunicador.common;
 
 import javax.swing.*;
-import java.util.Scanner;
 
 public class Util {
 
