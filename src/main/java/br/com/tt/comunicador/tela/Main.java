@@ -5,7 +5,6 @@ import br.com.tt.comunicador.exceptions.TamanhoMensagemInvalidoException;
 import br.com.tt.comunicador.model.Mensagem;
 import br.com.tt.comunicador.model.Usuario;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,17 +15,17 @@ public class Main {
     private static Usuario usuarioLogado;
     private static List<Mensagem> mensagens;
 
-    private final static DateTimeFormatter FORMATO
-            = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static Util util = new Util();
+    private static MenuEntrar menuEntrar = new MenuEntrar(util);
 
     public static void main(String[] args) {
         mensagens = new ArrayList<>();
-        entrar();
+        usuarioLogado = menuEntrar.entrar();
         do {
             novaMensagem();
 
-            Util.print("Deseja sair? (S/N)");
-            String resposta = Util.read();
+            util.print("Deseja sair? (S/N)");
+            String resposta = util.read();
             if("S".equals(resposta)){
                 break;
             }
@@ -34,32 +33,16 @@ public class Main {
         listarMensagens();
     }
 
-    private static void entrar(){
-        Util.print("Informe seu username:");
-        String username = Util.read();
-
-        Util.print("Informe seu nome:");
-        String nome = Util.read();
-
-        Util.print("Informe seu nascimento (dd/mm/yyyy)");
-        String nascimentoTexto = Util.read();
-
-        LocalDate nascimento =
-                LocalDate.parse(nascimentoTexto, FORMATO);
-
-        usuarioLogado = new Usuario(username, nome, nascimento);
-    }
-
     private static void novaMensagem(){
-        Util.print("Mensagem: ");
-        String texto = Util.read();
+        util.print("Mensagem: ");
+        String texto = util.read();
         try {
             Mensagem mensagem = new Mensagem(texto);
             mensagens.add(mensagem);
 
         }catch (TamanhoMensagemInvalidoException e){
             System.err.println(e);
-            Util.print(e.getMessage());
+            util.print(e.getMessage());
         } finally {
             //algo que sempre deve executar...
         }
@@ -75,7 +58,7 @@ public class Main {
             descricoes += msg.getDescricao() + "\n";
             // outro exemplo: descricoes = descricoes.concat(msg + "\n");
         }
-        Util.print(descricoes);
+        util.print(descricoes);
 
     }
 }
