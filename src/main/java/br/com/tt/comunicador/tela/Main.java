@@ -15,12 +15,16 @@ public class Main {
 
     private static Util util = new Util();
     private static MenuEntrar menuEntrar = new MenuEntrar(util);
+    private static MenuMensagem menuMensagem = new MenuMensagem();
 
     public static void main(String[] args) {
         mensagens = new ArrayList<>();
         usuarioLogado = menuEntrar.entrar();
         do {
-            novaMensagem();
+            Mensagem msg = menuMensagem.novaMensagem();
+            if(msg != null){
+                mensagens.add(msg);
+            }
 
             util.print("Deseja sair? (S/N)");
             String resposta = util.read();
@@ -29,23 +33,6 @@ public class Main {
             }
         }while (true);
         listarMensagens();
-    }
-
-    private static void novaMensagem(){
-        util.print("Mensagem: ");
-        String texto = util.read();
-        try {
-            Mensagem mensagem = new Mensagem(texto);
-            mensagens.add(mensagem);
-
-        }catch (TamanhoMensagemInvalidoException e){
-            System.err.println(e);
-            util.print(e.getMessage());
-        } finally {
-            //algo que sempre deve executar...
-        }
-        //dataHora.format(
-        // DateTimeFormatter.ofPattern("dd/MM/yyy"));
     }
 
     private static void listarMensagens(){
