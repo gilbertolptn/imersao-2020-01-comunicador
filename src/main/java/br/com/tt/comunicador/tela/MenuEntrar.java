@@ -20,6 +20,10 @@ class MenuEntrar {
         util.print("Informe seu username:");
         String username = util.read();
 
+        if(username.equals("admin")){
+            throw new IllegalArgumentException("Admin não habilitado");
+        }
+
         util.print("Informe seu nome:");
         String nome = util.read();
 

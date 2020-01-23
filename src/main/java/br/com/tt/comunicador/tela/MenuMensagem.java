@@ -4,15 +4,15 @@ import br.com.tt.comunicador.common.Util;
 import br.com.tt.comunicador.exceptions.TamanhoMensagemInvalidoException;
 import br.com.tt.comunicador.model.Mensagem;
 
-public class MenuMensagem {
+class MenuMensagem {
 
     private Util util;
 
-    public MenuMensagem(Util util){
+    MenuMensagem(Util util){
         this.util = util;
     }
 
-    public Mensagem novaMensagem(){
+    Mensagem novaMensagem(){
         util.print("Mensagem: ");
         String texto = util.read();
         try {

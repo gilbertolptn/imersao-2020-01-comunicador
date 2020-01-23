@@ -15,7 +15,7 @@ public class Main {
 
     private static Util util = new Util();
     private static MenuEntrar menuEntrar = new MenuEntrar(util);
-    private static MenuMensagem menuMensagem = new MenuMensagem();
+    private static MenuMensagem menuMensagem = new MenuMensagem(util);
 
     public static void main(String[] args) {
         mensagens = new ArrayList<>();
