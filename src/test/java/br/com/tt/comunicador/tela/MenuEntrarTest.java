@@ -39,7 +39,7 @@ class MenuEntrarTest {
         LocalDate nascimentoEsperado
         = LocalDate.of(1999, 10, 01);
 
-        assertEquals("lptn",usuario.getUsername());
+        assertEquals(21,usuario.idade());
         assertEquals("Gilberto", usuario.getNome());
         assertEquals(nascimentoEsperado,usuario.getNascimento());
 
