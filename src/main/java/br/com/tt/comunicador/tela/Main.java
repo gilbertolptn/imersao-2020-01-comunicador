@@ -1,6 +1,7 @@
 package br.com.tt.comunicador.tela;
 
 import br.com.tt.comunicador.common.Util;
+import br.com.tt.comunicador.exceptions.EstadoInexistenteException;
 import br.com.tt.comunicador.exceptions.TamanhoMensagemInvalidoException;
 import br.com.tt.comunicador.model.Mensagem;
 import br.com.tt.comunicador.model.Usuario;
@@ -17,7 +18,7 @@ public class Main {
     private static MenuEntrar menuEntrar = new MenuEntrar(util);
     private static MenuMensagem menuMensagem = new MenuMensagem(util);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EstadoInexistenteException {
         mensagens = new ArrayList<>();
         usuarioLogado = menuEntrar.entrar();
         do {

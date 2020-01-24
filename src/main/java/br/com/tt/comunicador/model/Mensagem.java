@@ -28,6 +28,10 @@ public class Mensagem {
         }
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
     public String getDescricao() {
         //TODO trocar por StringBuilder
         String dataHoraFormatada = "(sem data)";
